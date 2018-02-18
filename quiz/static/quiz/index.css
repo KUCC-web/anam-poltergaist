@@ -1,0 +1,31 @@
+html, body {
+    height: 100%;
+}
+
+#container {
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+#btn-start {
+    width: 300px;
+    padding: 20px 0;
+    margin: auto;
+    background-color: cornflowerblue;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+}
+
+a, a:visited {
+    text-decoration: none;
+}
