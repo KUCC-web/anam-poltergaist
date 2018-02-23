@@ -29,8 +29,8 @@ progress::-webkit-progress-value {
 
 .quiz-progress {
     position: absolute;
-    top: 200px;
-    left: 250px;
+    top: 50%;
+    left: 62.5%;
     transform: rotate(-90deg);
 }
 
