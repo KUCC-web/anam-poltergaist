@@ -19,3 +19,18 @@ a, a:visited {
     -webkit-justify-content: center;
     justify-content: center;
 }
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    width: 195px;
+    padding: 20px 0;
+    color: white;
+    cursor: pointer;
+}
+
+.store-img {
+    width: 400px;
+    height: 400px;
+    border-radius: 10px;
+}

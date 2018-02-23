@@ -1,0 +1,44 @@
+form {
+    font-size: 0;
+}
+
+progress {
+    background-color: antiquewhite;
+    width: 380px;
+    border-radius:10px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: antiquewhite;
+  border-radius: 10px;
+  /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
+}
+progress::-webkit-progress-value {
+  background-color: lightgreen;
+  border-radius: 10px;
+  /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
+}
+
+.btn-positive {
+    background-color: cornflowerblue;
+    margin-right: 10px;
+}
+
+.btn-negative {
+    background-color: darkgray;
+}
+
+.quiz-progress {
+    position: absolute;
+    top: 200px;
+    left: 250px;
+    transform: rotate(-90deg);
+}
+
+.img-container {
+    position: relative;
+}
+
+.btn:focus {
+    outline: none
+}
