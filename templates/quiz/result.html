@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>안암동 고인물 테스트</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quiz/common.css' %}"/>
+    <link rel="stylesheet" href="{% static 'quiz/result.css' %}"/>
+</head>
+<body>
+    <ul>
+    {% for store, pick in pick_list %}
+        <li>
+            <h1 class="title">{{ store.name }}</h1>
+            <img class="store-img" src="{{ store.image_url }}"/>
+
+        {% if pick %}
+            <p>고름</p>
+        {% else %}
+            <p>안고름</p>
+        {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

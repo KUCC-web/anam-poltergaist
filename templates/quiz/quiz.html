@@ -15,11 +15,7 @@
                 <img class="store-img" src="{{ store.image_url }}"/>
                 <progress class="quiz-progress" value="{{ step }}" max="10"></progress>
             </div>
-            {% if step != 10 %}
-                <form method="post" action="{% url 'quiz:submit' %}">
-            {% else %}
-                <form method="post" action="{% url 'quiz:result' %}">
-            {% endif %}
+            <form method="post" action="{% url 'quiz:submit' %}">
                 {% csrf_token %}
                 <input type="submit" name="Y" value="가봤어요!" class="btn btn-positive"/>
                 <input type="submit" name="N" value="몰라요" class="btn btn-negative"/>
