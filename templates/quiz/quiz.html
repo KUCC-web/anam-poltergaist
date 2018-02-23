@@ -16,7 +16,7 @@
                 <progress class="quiz-progress" value="{{ step }}" max="10"></progress>
             </div>
             {% if step != 10 %}
-                <form method="post" action="{% url 'quiz:quiz' %}">
+                <form method="post" action="{% url 'quiz:submit' %}">
             {% else %}
                 <form method="post" action="{% url 'quiz:result' %}">
             {% endif %}
