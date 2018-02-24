@@ -1,3 +1,7 @@
+import bisect
+import random
+
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from quiz.models import Store
 
@@ -18,6 +22,7 @@ def quiz_submit(request):
 
         pick_list = request.session['pick_list'] if 'pick_list' in request.session else []
         pick_list.append(True if 'Y' in request.POST else False)
+
         request.session['prev_store_list'] = prev_store_list
         request.session['pick_list'] = pick_list
 
@@ -29,8 +34,14 @@ def quiz_submit(request):
 
 def quiz(request):
     step = request.session['step'] if 'step' in request.session else 0
+    prev_store_list = request.session['prev_store_list']\
+        if 'prev_store_list' in request.session else []
 
-    store = Store.objects.get(pk=step+1)
+    # 몇 개 안되서 다 가져와서 랜덤으로 뽑음
+    store_list = Store.objects.filter(~Q(pk__in=prev_store_list))
+
+    store = random.choice(store_list)
+
     request.session['prev_store'] = store.id
     context = {
         'step': step,
@@ -42,9 +53,16 @@ def quiz(request):
 def result(request):
     if 'step' not in request.session or request.session['step'] < 9:
         return redirect('quiz:quiz')
-    store_list = Store.objects.filter(pk__in=request.session['prev_store_list'])
+    stores = Store.objects.filter(pk__in=request.session['prev_store_list'])
+    store_list = [stores[bisect.bisect_left(stores, pk)] for pk in request.session['prev_store_list']]
+    pick_list = list(zip(store_list, request.session['pick_list']))
+    score = 0
+    for store, is_picked in pick_list:
+        if is_picked:
+            score += store.score
     context = {
-        'pick_list': list(zip(store_list, request.session['pick_list']))
+        'pick_list': pick_list,
+        'score': score
     }
     del request.session['step']
     del request.session['prev_store']

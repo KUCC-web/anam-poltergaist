@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="{% static 'quiz/result.css' %}"/>
 </head>
 <body>
+    <h1>당신은 안암동 입니다!</h1>
+    <p>{{ score }}</p>
     <ul>
     {% for store, pick in pick_list %}
         <li>
             <h1 class="title">{{ store.name }}</h1>
             <img class="store-img" src="{{ store.image_url }}"/>
-
+            <p>{{ store.score }}</p>
         {% if pick %}
             <p>고름</p>
         {% else %}
