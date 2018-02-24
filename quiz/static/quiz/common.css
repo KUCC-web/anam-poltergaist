@@ -10,10 +10,16 @@ a, a:visited {
     text-decoration: none;
 }
 
+ul {
+    list-style-type: none;
+    min-height: min-content;
+}
+
 #container {
     height: 100%;
     display: -webkit-flex;
     display: flex;
+    flex-direction: column;
     -webkit-align-items: center;
     align-items: center;
     -webkit-justify-content: center;
