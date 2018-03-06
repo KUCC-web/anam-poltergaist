@@ -14,16 +14,15 @@ def quiz_submit(request):
     if request.method == 'POST':
         if 'prev_store' not in request.session:
             return redirect('quiz:quiz')
-        step = request.session['step'] if 'step' in request.session else 0
-        request.session['step'] = step + 1
-
-        prev_store_list = request.session['prev_store_list'] if 'prev_store_list' in request.session else []
-        prev_store_list.append(request.session['prev_store'])
 
         pick_list = request.session['pick_list'] if 'pick_list' in request.session else []
-        pick_list.append(True if 'Y' in request.POST else False)
+        pick_list.append({
+            'store_id': request.session['prev_store'],
+            'pick': True if 'Y' in request.POST else False
+        })
 
-        request.session['prev_store_list'] = prev_store_list
+        step = request.session['step'] if 'step' in request.session else 0
+        request.session['step'] = step + 1
         request.session['pick_list'] = pick_list
 
         if request.session['step'] >= 10:
@@ -34,15 +33,17 @@ def quiz_submit(request):
 
 def quiz(request):
     step = request.session['step'] if 'step' in request.session else 0
-    prev_store_list = request.session['prev_store_list']\
-        if 'prev_store_list' in request.session else []
+    pick_list = request.session['pick_list'] \
+        if 'pick_list' in request.session else []
+
+    prev_store_id_list = [item['store_id'] for item in pick_list]
 
     # 몇 개 안되서 다 가져와서 랜덤으로 뽑음
-    store_list = Store.objects.filter(~Q(pk__in=prev_store_list))
+    store_list = Store.objects.filter(~Q(pk__in=prev_store_id_list))
 
     store = random.choice(store_list)
 
-    request.session['prev_store'] = store.id
+    request.session['prev_store'] = store.pk
     context = {
         'step': step,
         'store': store
@@ -54,12 +55,12 @@ def result(request):
     if 'step' not in request.session or request.session['step'] < 9:
         request.session.flush()
         return redirect('quiz:index')
-    stores = Store.objects.filter(pk__in=request.session['prev_store_list'])
-    store_list = [stores[bisect.bisect_left(stores, pk)] for pk in request.session['prev_store_list']]
-    pick_list = list(zip(store_list, request.session['pick_list']))
+    prev_store_id_list = [item['store_id'] for item in request.session['pick_list']]
+    stores = Store.objects.filter(pk__in=prev_store_id_list)
+    pick_list = [(stores[bisect.bisect_left(stores, pick['pick'])], pick) for pick in request.session['pick_list']]
     score = 0
-    for store, is_picked in pick_list:
-        if is_picked:
+    for store, pick in pick_list:
+        if pick['pick']:
             score += store.score
     context = {
         'pick_list': pick_list,
@@ -68,5 +69,3 @@ def result(request):
     request.session.flush()
 
     return render(request, 'quiz/result.html', context)
-
-
