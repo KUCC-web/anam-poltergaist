@@ -60,7 +60,7 @@ def result(request):
         return redirect('quiz:index')
     prev_store_id_list = [item['store_id'] for item in request.session['pick_list']]
     stores = Store.objects.filter(pk__in=prev_store_id_list)
-    pick_list = [(stores[bisect.bisect_left(stores, pick['pick'])], pick) for pick in request.session['pick_list']]
+    pick_list = [(stores[bisect.bisect_left(stores, pick['store_id'])], pick) for pick in request.session['pick_list']]
     score = 0
     for store, pick in pick_list:
         if pick['pick']:
