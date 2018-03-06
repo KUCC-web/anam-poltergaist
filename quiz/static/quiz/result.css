@@ -2,6 +2,11 @@ ul {
     text-align: left;
 }
 
+#arrow-down {
+    width: 5%;
+    margin: 20px auto auto;
+}
+
 #cover {
     height: 100vh;
     position: relative;
@@ -12,7 +17,7 @@ ul {
 
 #anchor {
     position: absolute;
-    bottom: 20%;
+    bottom: 5%;
     left: 0;
     right: 0;
     margin: auto 0;
