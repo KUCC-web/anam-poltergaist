@@ -5,6 +5,7 @@ class Store(models.Model):
     name = models.CharField(max_length=100, null=False)
     score = models.IntegerField(default=0, null=False)
     image_url = models.CharField(max_length=1000, null=False)
+    description = models.CharField(max_length=1000, default="")
 
     def __gt__(self, other):
         return self.pk > other
