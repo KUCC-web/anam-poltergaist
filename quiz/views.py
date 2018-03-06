@@ -16,6 +16,9 @@ def quiz_submit(request):
             return redirect('quiz:quiz')
 
         pick_list = request.session['pick_list'] if 'pick_list' in request.session else []
+        if request.session['prev_store'] in [pick['store_id'] for pick in pick_list]:
+            return redirect('quiz:quiz')
+
         pick_list.append({
             'store_id': request.session['prev_store'],
             'pick': True if 'Y' in request.POST else False
