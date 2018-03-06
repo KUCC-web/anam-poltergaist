@@ -7,6 +7,9 @@ class Store(models.Model):
     image_url = models.CharField(max_length=1000, null=False)
     description = models.CharField(max_length=1000, default="")
 
+    def __str__(self):
+        return self.name
+
     def __gt__(self, other):
         return self.pk > other
 
@@ -21,3 +24,12 @@ class Store(models.Model):
 
     def __eq__(self, other):
         return self.pk == other
+
+
+class Grade(models.Model):
+    text = models.CharField(max_length=10)
+    min = models.IntegerField(null=False)
+    max = models.IntegerField(null=False)
+
+    def __str__(self):
+        return self.text

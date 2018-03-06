@@ -3,7 +3,7 @@ import random
 
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from quiz.models import Store
+from quiz.models import Store, Grade
 
 
 def index(request):
@@ -65,8 +65,11 @@ def result(request):
     for store, pick in pick_list:
         if pick['pick']:
             score += store.score
+
+    grade = Grade.objects.get(min__lte=score, max__gte=score)
     context = {
         'pick_list': pick_list,
+        'grade': grade.text,
         'score': score
     }
     request.session.flush()
