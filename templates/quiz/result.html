@@ -8,19 +8,25 @@
     <link rel="stylesheet" href="{% static 'quiz/result.css' %}"/>
 </head>
 <body>
-    <h1>당신은 안암동 입니다!</h1>
+    <div id="cover">
+        <h1 id="result">당신은 안암동 입니다!</h1>
+        <div id="anchor">
+            <div>가보지 못한 곳들이 궁금하신가요?</div>
+            <div id="arrow-down"></div>
+        </div>
+    </div>
     <p>{{ score }}</p>
     <ul>
     {% for store, pick in pick_list %}
-        <li>
-            <h1 class="title">{{ store.name }}</h1>
-            <img class="store-img" src="{{ store.image_url }}"/>
-            <p>{{ store.score }}</p>
-        {% if pick %}
-            <p>고름</p>
-        {% else %}
-            <p>안고름</p>
-        {% endif %}
+        <li class="store-item">
+            <div class="store-title">{{ store.name }}</div>
+            <div class="store-content">
+                <img class="store-img" src="{{ store.image_url }}"/>
+                <div class="desc-container">
+                    <div class="floater"></div>
+                    <div class="description">설명설명</div>
+                </div>
+            </div>
         </li>
     {% endfor %}
     </ul>

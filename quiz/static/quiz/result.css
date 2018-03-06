@@ -1,0 +1,42 @@
+ul {
+    text-align: left;
+}
+
+#cover {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#anchor {
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    margin: auto 0;
+}
+
+.store-item {
+}
+
+.store-title {
+    background-color: #86BBD8;
+    padding: 20px;
+}
+
+.store-content {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.store-img {
+    margin-right: 20px;
+}
+
+
+

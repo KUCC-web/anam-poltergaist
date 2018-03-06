@@ -2,8 +2,12 @@ html, body {
     height: 100%;
 }
 
-h1 {
+body {
     text-align: center;
+}
+
+body, h1, h2, p {
+    margin: 0;
 }
 
 a, a:visited {
@@ -11,6 +15,7 @@ a, a:visited {
 }
 
 ul {
+    padding: 0;
     list-style-type: none;
     min-height: min-content;
 }
