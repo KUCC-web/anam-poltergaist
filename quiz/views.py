@@ -52,7 +52,8 @@ def quiz(request):
 
 def result(request):
     if 'step' not in request.session or request.session['step'] < 9:
-        return redirect('quiz:quiz')
+        request.session.flush()
+        return redirect('quiz:index')
     stores = Store.objects.filter(pk__in=request.session['prev_store_list'])
     store_list = [stores[bisect.bisect_left(stores, pk)] for pk in request.session['prev_store_list']]
     pick_list = list(zip(store_list, request.session['pick_list']))
@@ -64,9 +65,8 @@ def result(request):
         'pick_list': pick_list,
         'score': score
     }
-    del request.session['step']
-    del request.session['prev_store']
-    del request.session['prev_store_list']
-    del request.session['pick_list']
+    request.session.flush()
 
     return render(request, 'quiz/result.html', context)
+
+
