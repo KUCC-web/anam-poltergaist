@@ -35,8 +35,8 @@ ul {
     display: flex;
     display: -webkit-flex;
     align-items: center;
-    flex-wrap: wrap;
     height: 100%;
+    padding: 40px;
 }
 
 .store-img {
