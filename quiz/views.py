@@ -2,6 +2,7 @@ import bisect
 import random
 
 from django.db.models import Q
+from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from quiz.models import Store, Grade
 
@@ -16,13 +17,10 @@ def quiz_submit(request):
             return redirect('quiz:quiz')
 
         pick_list = request.session['pick_list'] if 'pick_list' in request.session else []
-        if request.session['prev_store'] in [pick['store_id'] for pick in pick_list]:
+        if request.session['prev_store']['id'] in [pick['id'] for pick in pick_list]:
             return redirect('quiz:quiz')
-
-        pick_list.append({
-            'store_id': request.session['prev_store'],
-            'pick': True if 'Y' in request.POST else False
-        })
+        request.session['prev_store']['pick'] = True if 'Y' in request.POST else False
+        pick_list.append(request.session['prev_store'])
 
         step = request.session['step'] if 'step' in request.session else 0
         request.session['step'] = step + 1
@@ -39,14 +37,27 @@ def quiz(request):
     pick_list = request.session['pick_list'] \
         if 'pick_list' in request.session else []
 
-    prev_store_id_list = [item['store_id'] for item in pick_list]
+    prev_store_id_list = [item['id'] for item in pick_list]
 
+    if 'prev_store' in request.session:
+        prev_store = request.session['prev_store']
+        if prev_store['pick'] and prev_store['score'] < 5:
+            score = prev_store['score'] + 1
+        elif not prev_store['pick'] and prev_store['score'] > 1:
+            score = prev_store['score'] - 1
+        else:
+            score = prev_store['score']
+    else:
+        score = 1
     # 몇 개 안되서 다 가져와서 랜덤으로 뽑음
-    store_list = Store.objects.filter(~Q(pk__in=prev_store_id_list))
+    store_list = Store.objects.filter(~Q(pk__in=prev_store_id_list), score=score)
+
+    if not store_list:
+        store_list = Store.objects.filter(~Q(pk__in=prev_store_id_list), score=score-1)
 
     store = random.choice(store_list)
 
-    request.session['prev_store'] = store.pk
+    request.session['prev_store'] = model_to_dict(store)
     context = {
         'step': step,
         'store': store
@@ -58,17 +69,15 @@ def result(request):
     if 'step' not in request.session or request.session['step'] < 9:
         request.session.flush()
         return redirect('quiz:index')
-    prev_store_id_list = [item['store_id'] for item in request.session['pick_list']]
-    stores = Store.objects.filter(pk__in=prev_store_id_list)
-    pick_list = [(stores[bisect.bisect_left(stores, pick['store_id'])], pick) for pick in request.session['pick_list']]
+    pick_list = request.session['pick_list']
     score = 0
-    for store, pick in pick_list:
-        if pick['pick']:
-            score += store.score
+    for store in pick_list:
+        if store['pick']:
+            score += store['score']
 
     grade = Grade.objects.get(min__lte=score, max__gte=score)
     context = {
-        'pick_list': pick_list,
+        'pick_list': filter(lambda item: item['pick'] is False, pick_list),
         'grade': grade.text,
         'score': score
     }
