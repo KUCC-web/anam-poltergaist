@@ -137,7 +137,7 @@ LOGGING = {
     'handlers': {
         'file': {
             'class': 'logging.FileHandler',
-            'filters': 'require_debug_false',
+            'filters': ['require_debug_false'],
             'filename': os.path.join(BASE_DIR, 'log/log')
         },
     },
