@@ -38,15 +38,14 @@ def quiz(request):
         if 'pick_list' in request.session else []
 
     prev_store_id_list = [item['id'] for item in pick_list]
-
-    if 'prev_store' in request.session:
-        prev_store = request.session['prev_store']
-        if prev_store['pick'] and prev_store['score'] < 5:
-            score = prev_store['score'] + 1
-        elif not prev_store['pick'] and prev_store['score'] > 1:
-            score = prev_store['score'] - 1
+    if pick_list:
+        last_pick = pick_list[-1]
+        if last_pick['pick'] and last_pick['score'] < 5:
+            score = last_pick['score'] + 1
+        elif not last_pick['pick'] and last_pick['score'] > 1:
+            score = last_pick['score'] - 1
         else:
-            score = prev_store['score']
+            score = last_pick['score']
     else:
         score = 1
     # 몇 개 안되서 다 가져와서 랜덤으로 뽑음
