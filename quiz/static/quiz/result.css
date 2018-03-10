@@ -27,8 +27,9 @@ ul {
 }
 
 .store-title {
-    background-color: #86BBD8;
-    padding: 20px;
+    font-weight: bold;
+    font-size: 2em;
+    padding: 20px 0;
 }
 
 .store-content {

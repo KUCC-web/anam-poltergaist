@@ -19,14 +19,15 @@
             {% endif %}
         </div>
     </div>
-    <p>{{ score }}</p>
     <ul>
     {% for store in pick_list %}
         <li class="store-item">
-            <div class="store-title">{{ store.name }}</div>
             <div class="store-content">
                 <img class="store-img" src="{{ store.image_url }}"/>
-                <div class="description">{{ store.description }}</div>
+                <div>
+                    <div class="store-title">{{ store.name }}</div>
+                    <div class="description">{{ store.description }}</div>
+                </div>
             </div>
         </li>
     {% endfor %}
