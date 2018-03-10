@@ -1,5 +1,5 @@
 """
-WSGI config for anam_poltergaist project.
+WSGI config for kucc_fair project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "anam_poltergaist.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kucc_fair.settings")
 
 application = get_wsgi_application()
