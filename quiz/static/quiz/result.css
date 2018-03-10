@@ -33,16 +33,16 @@ ul {
 
 
 
-.store-item {
+.question-item {
 }
 
-.store-title {
+.question-title {
     font-weight: bold;
     font-size: 2em;
     padding: 20px 0;
 }
 
-.store-content {
+.question-content {
     display: flex;
     display: -webkit-flex;
     align-items: center;
@@ -50,7 +50,7 @@ ul {
     padding: 40px;
 }
 
-.store-img {
+.question-img {
     margin-right: 20px;
 }
 

@@ -10,9 +10,9 @@
 <body>
     <div id="container">
         <div>
-            <h1 class="store-title">{{ store.name }}</h1>
+            <h1 class="question-title">{{ store.name }}</h1>
             <div class="img-container">
-                <img class="store-img" src="{{ store.image_url }}"/>
+                <img class="question-img" src="{{ store.image_url }}"/>
                 <progress class="quiz-progress" value="{{ step }}" max="10"></progress>
             </div>
             <form method="post" action="{% url 'quiz:submit' %}">
@@ -20,7 +20,6 @@
                 <input type="submit" name="Y" value="가봤어요!" class="btn btn-positive"/>
                 <input type="submit" name="N" value="안 가봤어요" class="btn btn-negative"/>
             </form>
-
         </div>
     </div>
 </body>

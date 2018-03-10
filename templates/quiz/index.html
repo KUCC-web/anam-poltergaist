@@ -9,8 +9,8 @@
 </head>
 <body>
     <div id="container">
-        <div class="title">안암골 커피중독자 테스트</div>
-        <a href="{% url 'quiz:quiz' %}"><div id="btn-start" class="btn">시작!</div></a>
+        <div class="title">{{ quiz.name }}</div>
+        <a href="{% url 'quiz:question' %}"><div id="btn-start" class="btn">시작!</div></a>
     </div>
 </body>
 </html>

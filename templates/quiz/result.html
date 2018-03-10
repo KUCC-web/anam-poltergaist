@@ -9,24 +9,26 @@
 </head>
 <body>
     <div id="cover">
-        <div id="result">당신은 안암동 {{ grade }}입니다!</div>
+        <div id="result">{{ grade }}</div>
         <div id="anchor">
             {% if pick_list %}
-                <div id="anchor-text">가보지 못한 곳들이 궁금하신가요?</div>
+                <div id="anchor-text">무엇을 틀렸는지 궁금하신가요?</div>
                 <div id="arrow-down"><img src="{% static 'images/arrow-down.png' %}" width="100%"/></div>
             {% else %}
-                <div>카페를 정말 좋아하시는군요!</div>
+                <div>모든 정답을 맞히셨습니다!</div>
             {% endif %}
         </div>
     </div>
     <ul>
-    {% for store in pick_list %}
-        <li class="store-item">
-            <div class="store-content">
-                <img class="store-img" src="{{ store.image_url }}"/>
+    {% for question in incorrect_list %}
+        <li class="question-item">
+            <div class="question-content">
+                {% if question.image_url %}
+                    <img class="question-img" src="{{ question.image_url }}"/>
+                {% endif %}
                 <div>
-                    <div class="store-title">{{ store.name }}</div>
-                    <div class="description">{{ store.description }}</div>
+                    <div class="question-title">{{ question.name }}</div>
+                    <div class="description">{{ question.description }}</div>
                 </div>
             </div>
         </li>
