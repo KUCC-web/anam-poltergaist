@@ -16,8 +16,13 @@ a, a:visited {
 
 ul {
     padding: 0;
+    margin: 0;
     list-style-type: none;
     min-height: min-content;
+}
+
+li {
+    margin: 0;
 }
 
 #container {

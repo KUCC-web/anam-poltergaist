@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'main/common_header.html' %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/index.css' %}"/>
+</head>
+<body>
+    <ul>
+    {% for quiz in quiz_list %}
+            <li style="background: url({{ quiz.image_url }}) no-repeat center/cover">
+                <a href="{% url 'quiz:question' quiz.id %}">
+                    <div class="quiz-item">
+                        <div class="quiz-title">{{ quiz.name }}</div>
+                        <div class="quiz-description">{{ quiz.description }}</div>
+                    </div>
+                </a>
+            </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
