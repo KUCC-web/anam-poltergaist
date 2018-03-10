@@ -4,7 +4,8 @@ form {
 
 progress {
     background-color: antiquewhite;
-    width: 380px;
+    width: 320px;
+    height: 20px;
     border-radius:10px;
 }
 
@@ -18,11 +19,13 @@ progress::-webkit-progress-value {
   border-radius: 10px;
 }
 
-.question-title {
+.question {
     font-size: 2em;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
+
+
 
 .btn-positive {
     background-color: cornflowerblue;
@@ -33,17 +36,38 @@ progress::-webkit-progress-value {
     background-color: darkgray;
 }
 
+.btn:hover {
+    transition-duration: 0.5s;
+    opacity: 0.7;
+}
+
+.btn:focus {
+    outline: none
+}
+
 .quiz-progress {
-    position: absolute;
-    top: 50%;
-    left: 62.5%;
-    transform: rotate(-90deg);
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 62.5%;*/
+    /*transform: rotate(-90deg);*/
 }
 
 .img-container {
     position: relative;
 }
 
-.btn:focus {
-    outline: none
+.step-container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    margin: 40px auto 0;
+    width: 400px;
+}
+
+.step {
+    background-color: indianred;
+    color: white;
+    width: 70px;
+    height: 20px;
+    border-radius: 10px;
 }

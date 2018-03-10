@@ -8,16 +8,21 @@
 <body>
     <div id="container">
         <div>
-            <h1 class="question-title">{{ store.name }}</h1>
+            <h1 class="question">{{ question.question }}</h1>
+            {% if question.image_url %}
             <div class="img-container">
-                <img class="question-img" src="{{ store.image_url }}"/>
-                <progress class="quiz-progress" value="{{ step }}" max="10"></progress>
+                <img class="question-img" src="{{ question.image_url }}"/>
             </div>
+            {% endif %}
             <form method="post" action="{% url 'quiz:submit' %}">
                 {% csrf_token %}
-                <input type="submit" name="Y" value="가봤어요!" class="btn btn-positive"/>
-                <input type="submit" name="N" value="안 가봤어요" class="btn btn-negative"/>
+                <input type="submit" name="True" value="맞아요" class="btn btn-positive"/>
+                <input type="submit" name="False" value="아니에요" class="btn btn-negative"/>
             </form>
+            <div class="step-container">
+                <div class="step">{{ step|add:"1" }}/10</div>
+                <progress class="quiz-progress" value="{{ step }}" max="10"></progress>
+            </div>
         </div>
     </div>
 </body>
