@@ -8,7 +8,7 @@ class Store(models.Model):
     description = models.CharField(max_length=1000, default="")
 
     def __str__(self):
-        return self.name
+        return self.name + ' (' + str(self.score) + ')'
 
     def __gt__(self, other):
         return self.pk > other
