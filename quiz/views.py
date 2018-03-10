@@ -39,7 +39,8 @@ def question_submit(request):
 def question(request, pk):
     current_session = request.session.get(str(pk), None)
     if not current_session:
-        if not Quiz.objects.get(pk=pk):
+        quiz = Quiz.objects.get(pk=pk)
+        if not quiz or quiz.content_type is not 'Q':
             return redirect('main:index')
         else:
             current_session = request.session[str(pk)] = {}

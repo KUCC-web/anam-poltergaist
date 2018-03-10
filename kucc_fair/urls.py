@@ -21,5 +21,6 @@ import quiz
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('quiz/', include('quiz.urls'))
+    path('quiz/', include('quiz.urls')),
+    path('tournament/', include('tournament.urls')),
 ]

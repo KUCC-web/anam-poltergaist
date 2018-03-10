@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'main/common_header.html' %}
+    {% load static %}
+</head>
+<body>
+{% if level == 2 %}
+    <div class="header">결승</div>
+{% elif level == 4 %}
+    <div class="header">준결승</div>
+{% else %}
+    <div class="header">{{ level }}강</div>
+{% endif %}
+
+    <form method="post" action="{% url 'tournament:submit' %}">
+    {% csrf_token %}
+    {% for item in questions %}
+        <input type="submit" name="{{ item.id }}" value="{{ item.question }}" class="selection"/>
+    {% endfor %}
+    </form>
+</body>
+</html>
