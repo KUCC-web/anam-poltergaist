@@ -2,11 +2,6 @@ ul {
     text-align: left;
 }
 
-#arrow-down {
-    width: 5%;
-    margin: 20px auto auto;
-}
-
 #cover {
     height: 100vh;
     position: relative;
@@ -22,6 +17,21 @@ ul {
     right: 0;
     margin: auto 0;
 }
+
+#result {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#anchor-text {
+}
+
+#arrow-down {
+    width: 5%;
+    margin: 20px auto auto;
+}
+
+
 
 .store-item {
 }

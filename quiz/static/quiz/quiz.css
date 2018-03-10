@@ -18,6 +18,12 @@ progress::-webkit-progress-value {
   border-radius: 10px;
 }
 
+.store-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 .btn-positive {
     background-color: cornflowerblue;
     margin-right: 10px;

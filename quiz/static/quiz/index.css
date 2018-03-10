@@ -1,8 +1,13 @@
-
 #btn-start {
-    width: 300px;
+    width: 400px;
     margin: auto;
     background-color: cornflowerblue;
     text-align: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2em;
+    margin-bottom: 20px;
 }
 

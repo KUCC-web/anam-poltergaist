@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>안암동 고인물 테스트</title>
+    <title>KUCC 동아리 박람회</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'quiz/common.css' %}"/>
     <link rel="stylesheet" href="{% static 'quiz/quiz.css' %}"/>
@@ -18,7 +18,7 @@
             <form method="post" action="{% url 'quiz:submit' %}">
                 {% csrf_token %}
                 <input type="submit" name="Y" value="가봤어요!" class="btn btn-positive"/>
-                <input type="submit" name="N" value="몰라요" class="btn btn-negative"/>
+                <input type="submit" name="N" value="안 가봤어요" class="btn btn-negative"/>
             </form>
 
         </div>
