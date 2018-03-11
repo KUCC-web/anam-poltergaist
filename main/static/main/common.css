@@ -25,6 +25,11 @@ li {
     margin: 0;
 }
 
+
+form {
+    font-size: 0;
+}
+
 #container {
     height: 100%;
     display: -webkit-flex;

@@ -14,9 +14,11 @@
             {% else %}
                 <a href="{% url 'tournament:tournament' quiz.id %}">
             {% endif %}
-                    <div class="quiz-item">
-                        <div class="quiz-title">{{ quiz.name }}</div>
-                        <div class="quiz-description">{{ quiz.description }}</div>
+                    <div class="quiz-cover">
+                        <div class="quiz-content">
+                            <div class="quiz-title">{{ quiz.name }}</div>
+                            <div class="quiz-description">{{ quiz.description }}</div>
+                        </div>
                     </div>
                 </a>
             </li>

@@ -1,4 +1,4 @@
-.quiz-item {
+.quiz-cover {
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
@@ -6,10 +6,17 @@
     align-items: center;
     width: 100%;
     height: 50vh;
+}
+
+.quiz-content {
+    width: 50%;
+    padding: 20px 0;
     color: white;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .quiz-title {
     font-weight: bold;
+    margin-bottom: 10px;
     font-size: 2em;
 }

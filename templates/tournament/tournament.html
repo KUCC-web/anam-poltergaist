@@ -3,6 +3,7 @@
 <head>
     {% include 'main/common_header.html' %}
     {% load static %}
+    <link rel="stylesheet" href="{% static 'tournament/tournament.css' %}"/>
 </head>
 <body>
 {% if level == 2 %}
@@ -13,11 +14,16 @@
     <div class="header">{{ level }}강</div>
 {% endif %}
 
-    <form method="post" action="{% url 'tournament:submit' %}">
-    {% csrf_token %}
-    {% for item in questions %}
-        <input type="submit" name="{{ item.id }}" value="{{ item.question }}" class="selection"/>
-    {% endfor %}
-    </form>
+    <div id="content">
+        <form method="post" action="{% url 'tournament:submit' %}">
+        {% csrf_token %}
+        {% for item in questions %}
+            <div class="selection-container" style="background: url({{ item.image_url }}) no-repeat center/cover">
+                <div class="selection-text">{{ item.question }}</div>
+                <input type="submit" name="{{ item.id }}" value="" class="selection"/>
+            </div>
+        {% endfor %}
+        </form>
+    </div>
 </body>
 </html>
