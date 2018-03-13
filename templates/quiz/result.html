@@ -9,7 +9,7 @@
     <div id="cover">
         <div id="result">{{ grade }}</div>
         <div id="anchor">
-            {% if incorrect_list|length is not 0 %}
+            {% if incorrect_list|length != 0 %}
                 <div id="anchor-text">무엇을 틀렸는지 궁금하신가요?</div>
                 <div id="arrow-down"><img src="{% static 'images/arrow-down.png' %}" width="100%"/></div>
             {% else %}

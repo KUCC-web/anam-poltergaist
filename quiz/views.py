@@ -79,7 +79,7 @@ def result(request):
 
     grade = Grade.objects.get(min__lte=score, max__gte=score)
     context = {
-        'incorrect_list': filter(lambda item: item['correct'] is False, pick_list),
+        'incorrect_list': list(filter(lambda item: item['correct'] is False, pick_list)),
         'grade': grade.text
     }
     del request.session[str(quiz_pk)]
